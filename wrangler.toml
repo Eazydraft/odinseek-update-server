@@ -1,4 +1,4 @@
-name = "lucio-studio-update-server"
+name = "odinseek-update-server"
 main = "./workers/app.ts"
 compatibility_flags = ["nodejs_compat"]
 compatibility_date = "2025-04-04"
@@ -9,5 +9,12 @@ head_sampling_rate = 0.5
 
 [vars]
 ACCOUNT="Eazydraft"
-REPOSITORY="clippy"
-URL="https://updates.studio.lucioai.com"
+REPOSITORY="odinseek"
+URL="https://updates.odinseek.com"
+
+# Auto-creates DNS + edge cert for the custom domain (needs the odinseek.com zone
+# in this Cloudflare account). The private-repo read token is a SECRET, not a var:
+#   npx wrangler@4 secret put TOKEN
+[[routes]]
+pattern = "updates.odinseek.com"
+custom_domain = true
